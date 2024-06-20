@@ -87,6 +87,19 @@
         .resource-address:hover {
             text-decoration: underline;
         }
+        .values {
+            margin-left: 20px;
+            background: #f7f7f7;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        .values dt {
+            font-weight: bold;
+        }
+        .values dd {
+            margin-bottom: 10px;
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -129,7 +142,13 @@
                                         <strong>Type:</strong> {{ resource['type'] }}<br>
                                         <strong>Name:</strong> {{ resource['name'] }}<br>
                                         <strong>Provider:</strong> {{ resource['provider_name'] }}<br>
-                                        <strong>Values:</strong> {{ resource['change'].get('after', {}) }}
+                                        <strong>Values:</strong>
+                                        <dl class="values">
+                                            {% for key, value in resource['change'].get('after', {}).items() %}
+                                                <dt>{{ key }}</dt>
+                                                <dd>{{ value }}</dd>
+                                            {% endfor %}
+                                        </dl>
                                     </div>
                                 </li>
                             {% endfor %}
