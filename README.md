@@ -77,6 +77,7 @@
         }
         .resource-details {
             display: none;
+            margin-top: 10px;
         }
         .resource-address {
             cursor: pointer;
@@ -120,15 +121,15 @@
                         <ul class="resources list-group list-group-flush" id="{{ change_type }}">
                             {% for resource in resources %}
                                 <li class="list-group-item {{ change_type }}">
-                                    <span class="resource-address" onclick="toggleDetails('{{ resource['address']|replace(' ', '_') }}')">
+                                    <span class="resource-address" onclick="toggleDetails('{{ resource['address']|replace('.', '_') }}')">
                                         <i class="fas fa-{{ 'plus-circle' if change_type == 'create' else 'book' if change_type == 'read' else 'edit' if change_type == 'update' else 'trash-alt' if change_type == 'delete' else 'sync' if change_type == 'delete_create' else 'exchange-alt' if change_type == 'create_delete' else 'minus-circle' }}"></i>
                                         {{ resource['address'] }}
                                     </span>
-                                    <div class="resource-details" id="{{ resource['address']|replace(' ', '_') }}">
+                                    <div class="resource-details" id="{{ resource['address']|replace('.', '_') }}">
                                         <strong>Type:</strong> {{ resource['type'] }}<br>
                                         <strong>Name:</strong> {{ resource['name'] }}<br>
-                                        <strong>Provider:</strong> {{ resource['provider'] }}<br>
-                                        <strong>Values:</strong> {{ resource['values'] }}
+                                        <strong>Provider:</strong> {{ resource['provider_name'] }}<br>
+                                        <strong>Values:</strong> {{ resource['change']['after'] }}
                                     </div>
                                 </li>
                             {% endfor %}
