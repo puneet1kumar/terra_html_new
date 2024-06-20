@@ -142,13 +142,15 @@
                                         <strong>Type:</strong> {{ resource['type'] }}<br>
                                         <strong>Name:</strong> {{ resource['name'] }}<br>
                                         <strong>Provider:</strong> {{ resource['provider_name'] }}<br>
-                                        <strong>Values:</strong>
-                                        <dl class="values">
-                                            {% for key, value in resource['change'].get('after', {}).items() %}
-                                                <dt>{{ key }}</dt>
-                                                <dd>{{ value }}</dd>
-                                            {% endfor %}
-                                        </dl>
+                                        {% if 'change' in resource %}
+                                            <strong>Values:</strong>
+                                            <dl class="values">
+                                                {% for key, value in resource['change'].get('after', {}).items() %}
+                                                    <dt>{{ key }}</dt>
+                                                    <dd>{{ value }}</dd>
+                                                {% endfor %}
+                                            </dl>
+                                        {% endif %}
                                     </div>
                                 </li>
                             {% endfor %}
