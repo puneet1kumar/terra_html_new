@@ -129,7 +129,7 @@
                                         <strong>Type:</strong> {{ resource['type'] }}<br>
                                         <strong>Name:</strong> {{ resource['name'] }}<br>
                                         <strong>Provider:</strong> {{ resource['provider_name'] }}<br>
-                                        <strong>Values:</strong> {{ resource['change']['after'] }}
+                                        <strong>Values:</strong> {{ resource['change'].get('after', {}) }}
                                     </div>
                                 </li>
                             {% endfor %}
